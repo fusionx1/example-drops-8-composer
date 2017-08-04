@@ -55,6 +55,7 @@ dependencies:
     - terminus build:env:delete:ci -n "$TERMINUS_SITE" --keep=2 --yes
     - composer -n build-assets
     - terminus env:wake -n "$TERMINUS_SITE.dev"
+    - git filter-branch -- --all
     - terminus build:env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --clone-content --db-only --notify="$NOTIFY"
     - terminus drush -n "$TERMINUS_SITE.$TERMINUS_ENV" -- updatedb -y
     - |
